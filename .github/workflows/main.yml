@@ -36,7 +36,11 @@ jobs:
     - name: Install system dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libyaml-dev
+        sudo apt-get install -y \
+        libyaml-dev \
+        libjpeg-dev \
+        zlib1g-dev \
+        libpng-dev
 
     - name: Ensure wheel is present
       run: |
