@@ -45,6 +45,7 @@ jobs:
       
       run: |
         python -m flake8 backend/
+        pytest tests/
         cd backend/
         python manage.py test
 
