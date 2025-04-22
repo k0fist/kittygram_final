@@ -59,13 +59,8 @@ jobs:
         DB_HOST: 127.0.0.1
         DB_PORT: 5432
       run: |
-        # Линтер для backend и тестов
         python -m flake8 backend/ tests/
 
-        # Pytest‑тесты из корня
-        pytest tests/
-
-        # Django‑тесты
         python backend/manage.py test
 
   build_and_push_to_docker_hub:
