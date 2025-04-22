@@ -17,6 +17,8 @@ services:
     volumes:
       - static:/backend_static
       - media:/app/media
+    expose:
+      - 8000
   frontend:
     env_file: .env
     build: ./frontend/
