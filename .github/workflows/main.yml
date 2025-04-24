@@ -48,14 +48,18 @@ jobs:
       run: |
         pip install flake8==6.0.0 flake8-isort==6.0.0 pytest
         pip install -r ./backend/requirements.txt
+    - name: Load .env
+      uses: motemen/load-dotenv@v1
+      with:
+        path: .env
 
     - name: Run linters and tests
-      env:
-        POSTGRES_USER: django_user
-        POSTGRES_PASSWORD: django_password
-        POSTGRES_DB: django_db
-        DB_HOST: 127.0.0.1
-        DB_PORT: 5432
+      # env:
+      #   POSTGRES_USER: django_user
+      #   POSTGRES_PASSWORD: django_password
+      #   POSTGRES_DB: django_db
+      #   DB_HOST: 127.0.0.1
+      #   DB_PORT: 5432
       run: |
         python -m flake8 backend/ tests/
 
