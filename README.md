@@ -1,26 +1,98 @@
-#  Как работать с репозиторием финального задания
+# kittygram_final
+kittygram_final - Фильнальная версия проект kittygram
 
-## Что нужно сделать
+Включает:
 
-Настроить запуск проекта Kittygram в контейнерах и CI/CD с помощью GitHub Actions
+- **REST API** на Django + DRF
+- **Графический веб-интерфейс**
+- **Контейнеризацию** с помощью Docker и Docker Compose
 
-## Как проверить работу с помощью автотестов
+[![Main Kittygram workflow](https://github.com/k0fist/kittygram_final/actions/workflows/main.yml/badge.svg)](https://github.com/k0fist/kittygram_final/actions/workflows/main.yml)
 
-В корне репозитория создайте файл tests.yml со следующим содержимым:
-```yaml
-repo_owner: ваш_логин_на_гитхабе
-kittygram_domain: полная ссылка (https://доменное_имя) на ваш проект Kittygram
-taski_domain: полная ссылка (https://доменное_имя) на ваш проект Taski
-dockerhub_username: ваш_логин_на_докерхабе
-```
+Автор проекта [Сироткин Вадим](https://github.com/k0fist)
 
-Скопируйте содержимое файла `.github/workflows/main.yml` в файл `kittygram_workflow.yml` в корневой директории проекта.
+## Техно-стек
 
-Для локального запуска тестов создайте виртуальное окружение, установите в него зависимости из backend/requirements.txt и запустите в корневой директории проекта `pytest`.
+- **Python** 
+- **Django** 
+- **Django REST Framework** 
+- **Simple JWT** 
+- **PostgreSQL** 
+- **Flake8**
+- **Docker**
 
-## Чек-лист для проверки перед отправкой задания
+## Установка и запуск (ручной режим)
 
-- Проект Taski доступен по доменному имени, указанному в `tests.yml`.
-- Проект Kittygram доступен по доменному имени, указанному в `tests.yml`.
-- Пуш в ветку main запускает тестирование и деплой Kittygram, а после успешного деплоя вам приходит сообщение в телеграм.
-- В корне проекта есть файл `kittygram_workflow.yml`.
+1. Клонировать репозиторий:
+   ```bash
+   git clone git@github.com:k0fist/kittygram_final.git
+   cd backend
+   ```
+2. Создать и активировать виртуальное окружение:
+   ```bash
+   python -m venv venv
+   source venv\Scripts\activate   # или venv/bin/activate на Linux
+   ```
+3. Установить зависимости:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Скопировать пример файла с переменными окружения и заполнить свои значения:
+
+5. Выполнить миграции и импорт данных (если требуется):
+   ```bash
+   python manage.py migrate
+   python manage.py import_data
+   ```
+6. Запустить локальный сервер:
+   ```bash
+   python manage.py runserver
+   ```
+7. Открыть в браузере:
+   - API: `http://127.0.0.1:9000/api/`
+   - Документация (Redoc): `http://127.0.0.1:9000/redoc/`
+   - Админка: `http://127.0.0.1:9000/admin/`
+
+---
+
+## Установка и запуск с Docker Compose
+
+1. Клонировать репозиторий:
+   ```bash
+   git clone git@github.com:k0fist/kittygram_final.git
+   cd backend
+   ```
+2. Скопировать пример файла окружения и заполнить свои значения:
+
+3. Запустить сборку и запуск контейнеров:
+   ```bash
+   docker-compose up --build -d
+   ```
+4. Применить миграции и импортировать данные:
+   ```bash
+   docker-compose exec web python manage.py migrate
+   docker-compose exec web python manage.py import_data
+   ```
+5. Открыть в браузере:
+   - API: `http://localhost:9000/api/`
+   - Документация (Redoc): `http://localhost:9000/redoc/`
+   - Админка: `http://localhost:9000/admin/`
+
+---
+
+## Переменные окружения
+
+Пример `.env.example`:
+
+```dotenv
+# Общие
+DEBUG=True
+SECRET_KEY=ваш_секретный_ключ
+ALLOWED_HOSTS=localhost,127.0.0.1
+
+# PostgreSQL
+POSTGRES_DB=db
+POSTGRES_USER=user
+POSTGRES_PASSWORD=pass
+DB_HOST=db
+DB_PORT=5432
