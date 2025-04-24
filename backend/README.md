@@ -1,51 +1,98 @@
-### Как запустить проект:
+# kittygram_final
+kittygram_final - Фильнальная версия проект kittygram
 
-Клонировать репозиторий и перейти в него в командной строке:
+Включает:
 
-```
-git clone https://github.com/yandex-praktikum/kittygram_backend.git
-```
+- **REST API** на Django + DRF
+- **Графический веб-интерфейс**
+- **Контейнеризацию** с помощью Docker и Docker Compose
 
-```
-cd kittygram_backend
-```
+[![Main Kittygram workflow](https://github.com/k0fist/kittygram_final/actions/workflows/main.yml/badge.svg)](https://github.com/k0fist/kittygram_final/actions/workflows/main.yml)
 
-Cоздать и активировать виртуальное окружение:
+Автор проекта [Сироткин Вадим](https://github.com/k0fist)
 
-```
-python3 -m venv env
-```
+## Техно-стек
 
-* Если у вас Linux/macOS
+- **Python** 
+- **Django** 
+- **Django REST Framework** 
+- **Simple JWT** 
+- **PostgreSQL** 
+- **Flake8**
+- **Docker**
 
-    ```
-    source env/bin/activate
-    ```
+## Установка и запуск (ручной режим)
 
-* Если у вас windows
+1. Клонировать репозиторий:
+   ```bash
+   git clone git@github.com:k0fist/kittygram_final.git
+   cd backend
+   ```
+2. Создать и активировать виртуальное окружение:
+   ```bash
+   python -m venv venv
+   source venv\Scripts\activate   # или venv/bin/activate на Linux
+   ```
+3. Установить зависимости:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Скопировать пример файла с переменными окружения и заполнить свои значения:
 
-    ```
-    source env/scripts/activate
-    ```
+5. Выполнить миграции и импорт данных (если требуется):
+   ```bash
+   python manage.py migrate
+   python manage.py import_data
+   ```
+6. Запустить локальный сервер:
+   ```bash
+   python manage.py runserver
+   ```
+7. Открыть в браузере:
+   - API: `http://127.0.0.1:9000/api/`
+   - Документация (Redoc): `http://127.0.0.1:9000/redoc/`
+   - Админка: `http://127.0.0.1:9000/admin/`
 
-```
-python3 -m pip install --upgrade pip
-```
+---
 
-Установить зависимости из файла requirements.txt:
+## Установка и запуск с Docker Compose
 
-```
-pip install -r requirements.txt
-```
+1. Клонировать репозиторий:
+   ```bash
+   git clone git@github.com:k0fist/kittygram_final.git
+   cd backend
+   ```
+2. Скопировать пример файла окружения и заполнить свои значения:
 
-Выполнить миграции:
+3. Запустить сборку и запуск контейнеров:
+   ```bash
+   docker-compose up --build -d
+   ```
+4. Применить миграции и импортировать данные:
+   ```bash
+   docker-compose exec web python manage.py migrate
+   docker-compose exec web python manage.py import_data
+   ```
+5. Открыть в браузере:
+   - API: `http://localhost:9000/api/`
+   - Документация (Redoc): `http://localhost:9000/redoc/`
+   - Админка: `http://localhost:9000/admin/`
 
-```
-python3 manage.py migrate
-```
+---
 
-Запустить проект:
+## Переменные окружения
 
-```
-python3 manage.py runserver
-```
+Пример `.env.example`:
+
+```dotenv
+# Общие
+DEBUG=True
+SECRET_KEY=ваш_секретный_ключ
+ALLOWED_HOSTS=localhost,127.0.0.1
+
+# PostgreSQL
+POSTGRES_DB=db
+POSTGRES_USER=user
+POSTGRES_PASSWORD=pass
+DB_HOST=db
+DB_PORT=5432

@@ -13,6 +13,8 @@ services:
   backend:
     image: k0fist/kittygram_backend
     env_file: .env
+    depends_on:
+      - db
     volumes:
       - static:/backend_static
       - ./media:/app/media
@@ -25,6 +27,8 @@ services:
   gateway:
     image: k0fist/kittygram_gateway
     env_file: .env
+    depends_on:
+      - backend
     volumes:
       - static:/staticfiles/
       - ./media:/media
