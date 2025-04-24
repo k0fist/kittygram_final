@@ -6,7 +6,8 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-
+    env:
+      DJANGO_SECRET: ${{ secrets.DJANGO_SECRET }}
     services:
       postgres:
         image: postgres:13.10
@@ -56,7 +57,7 @@ jobs:
         POSTGRES_DB: django_db
         DB_HOST: 127.0.0.1
         DB_PORT: 5432
-        DJANGO_SECRET: ${{ secrets.DJANGO_SECRET }}
+        # DJANGO_SECRET: ${{ secrets.DJANGO_SECRET }}
       run: |
         python -m flake8 backend/ tests/
 
