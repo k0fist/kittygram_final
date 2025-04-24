@@ -87,7 +87,7 @@ kittygram_final - Фильнальная версия проект kittygram
 ```dotenv
 # Общие
 DEBUG=True
-SECRET_KEY=ваш_секретный_ключ
+DJANGO_SECRET=secter
 ALLOWED_HOSTS=localhost,127.0.0.1
 
 # PostgreSQL

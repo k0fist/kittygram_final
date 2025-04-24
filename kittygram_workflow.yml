@@ -48,7 +48,7 @@ jobs:
       run: |
         pip install flake8==6.0.0 flake8-isort==6.0.0 pytest
         pip install -r ./backend/requirements.txt
-
+        
     - name: Run linters and tests
       env:
         POSTGRES_USER: django_user
@@ -56,6 +56,7 @@ jobs:
         POSTGRES_DB: django_db
         DB_HOST: 127.0.0.1
         DB_PORT: 5432
+        DJANGO_SECRET: ${{ secrets.DJANGO_SECRET }}
       run: |
         python -m flake8 backend/ tests/
 
@@ -149,16 +150,6 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         source: "docker-compose.production.yml"
-        target: "/home/${{ secrets.USER }}/kittygram/"
-
-    - name: Copy env via ssh
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
-        key: ${{ secrets.SSH_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        source: ".env"
         target: "/home/${{ secrets.USER }}/kittygram/"
 
     - name: Executing remote ssh commands to deploy
