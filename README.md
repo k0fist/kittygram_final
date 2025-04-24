@@ -31,7 +31,7 @@ kittygram_final - Фильнальная версия проект kittygram
 2. Создать и активировать виртуальное окружение:
    ```bash
    python -m venv venv
-   source venv\Scripts\activate   # или venv/bin/activate на Linux
+   source venv/Scripts/activate   # или venv/bin/activate на Linux
    ```
 3. Установить зависимости:
    ```bash
