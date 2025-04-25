@@ -7,7 +7,17 @@ kittygram_final - Фильнальная версия проект kittygram
 - **Графический веб-интерфейс**
 - **Контейнеризацию** с помощью Docker и Docker Compose
 
-[![Main Kittygram workflow](https://github.com/k0fist/kittygram_final/actions/workflows/main.yml/badge.svg)](https://github.com/k0fist/kittygram_final/actions/workflows/main.yml)
+Bedge: [![Main Kittygram workflow](https://github.com/k0fist/kittygram_final/actions/workflows/main.yml/badge.svg)](https://github.com/k0fist/kittygram_final/actions/workflows/main.yml)
+
+Возможности API интерфейс веб-приложения yatube: 
+1. Получить JWT-токены для авторизации в API и возможного обновления токена (срок действия токена 1 день). Эндпоинты: 
+  1.1. Для создания токена: api/v1/jwt/create/ 
+  1.2. Для обновления токена: api/v1/jwt/refresh/ 
+  1.3. Для проверки токена: api/v1/jwt/verify/ 
+2. Отправлять GET, POST, PUT, PATCH, DELETE запросы к постам по эндпоинтам api/v1/posts/, api/v1/posts/{id}/ 
+3. Отправлять GET, POST, PUT, PATCH, DELETE запросы к комментариям по эндпоинтам api/v1/comments/, api/v1/comments/{id}/ 
+4. Отправлять GET запросы к группам по эндпоинтам api/v1/groups/, api/v1/groups/{id}/ 
+5. Отправлять GET, POST запросы к группам по эндпоинту api/v1/follow/
 
 Автор проекта [Сироткин Вадим](https://github.com/k0fist)
 
@@ -75,7 +85,6 @@ kittygram_final - Фильнальная версия проект kittygram
    ```
 5. Открыть в браузере:
    - API: `http://localhost:9000/api/`
-   - Документация (Redoc): `http://localhost:9000/redoc/`
    - Админка: `http://localhost:9000/admin/`
 
 ---
